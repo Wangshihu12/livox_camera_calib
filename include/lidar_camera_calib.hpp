@@ -1006,12 +1006,15 @@ void Calibration::calcLine(
   }
 }
 
+// 将激光3D点根据当前标定参数投影到图像2D点，并基于这些投影与相机边缘点的匹配来生成VPnP数据
 void Calibration::buildVPnp(
     const Vector6d &extrinsic_params, const int dis_threshold,
     const bool show_residual,
     const pcl::PointCloud<pcl::PointXYZ>::Ptr &cam_edge_cloud_2d,
     const pcl::PointCloud<pcl::PointXYZI>::Ptr &lidar_line_cloud_3d,
     std::vector<VPnPData> &pnp_list) {
+
+  // 初始化图像点容器
   pnp_list.clear();
   std::vector<std::vector<std::vector<pcl::PointXYZI>>> img_pts_container;
   for (int y = 0; y < height_; y++) {
@@ -1023,6 +1026,7 @@ void Calibration::buildVPnp(
     img_pts_container.push_back(row_pts_container);
   }
   std::vector<cv::Point3d> pts_3d;
+  // 根据外参计算旋转矩阵
   Eigen::AngleAxisd rotation_vector3;
   rotation_vector3 =
       Eigen::AngleAxisd(extrinsic_params[0], Eigen::Vector3d::UnitZ()) *
@@ -1033,6 +1037,8 @@ void Calibration::buildVPnp(
     pcl::PointXYZI point_3d = lidar_line_cloud_3d->points[i];
     pts_3d.emplace_back(cv::Point3d(point_3d.x, point_3d.y, point_3d.z));
   }
+
+  // 计算相机内参矩阵和畸变系数矩阵
   cv::Mat camera_matrix =
       (cv::Mat_<double>(3, 3) << fx_, 0.0, cx_, 0.0, fy_, cy_, 0.0, 0.0, 1.0);
   cv::Mat distortion_coeff =
@@ -1052,6 +1058,8 @@ void Calibration::buildVPnp(
   // std::cout << "r_vec:" << r_vec << std::endl;
   // std::cout << "t_vec:" << t_vec << std::endl;
   // std::cout << "pts 3d size:" << pts_3d.size() << std::endl;
+  
+  // 投影到像素坐标
   cv::projectPoints(pts_3d, r_vec, t_vec, camera_matrix, distortion_coeff,
                     pts_2d);
   pcl::PointCloud<pcl::PointXYZ>::Ptr line_edge_cloud_2d(
