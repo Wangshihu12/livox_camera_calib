@@ -23,7 +23,7 @@ Voxel.down_sample_size: 0.02
 Plane.min_points_size: 30
 Plane.normal_theta_min: 45
 Plane.normal_theta_max: 135
-Plane.max_size: 8
+Plane.max_size: 5 #8
 Ransac.dis_threshold: 0.02
 Edge.min_dis_threshold: 0.03
 Edge.max_dis_threshold: 0.06
