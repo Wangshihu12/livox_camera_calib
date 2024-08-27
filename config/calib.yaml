@@ -1,15 +1,19 @@
 # Data path. adjust them!
 common:
-    image_file: "/home/goslam/Documents/calibration/single_scene_calibration/2.png"
-    pcd_file: "/home/goslam/Documents/calibration/single_scene_calibration/2.pcd"
-    result_file: "/home/goslam/Documents/calibration/single_scene_calibration/extrinsic.txt"
+    image_file: "/home/goslam/Documents/calib/0.png"
+    pcd_file: "/home/goslam/Documents/calib/0.pcd"
+    result_file: "/home/goslam/Documents/calib/extrinsic.txt"
 
 # Camera Parameters. Adjust them!
 camera:
-    camera_matrix: [1364.45, 0.0,      958.327,
-                0.0,     1366.46,  535.074,
-                0.0,     0.0,      1.0     ]
-    dist_coeffs: [0.0958277, -0.198233, -0.000147133, -0.000430056, 0.000000]
+    # camera_matrix: [1364.45, 0.0,      958.327,
+    #             0.0,     1366.46,  535.074,
+    #             0.0,     0.0,      1.0     ]
+    # dist_coeffs: [0.0958277, -0.198233, -0.000147133, -0.000430056, 0.000000]
+    camera_matrix: [1280, 0.0, 640,
+                   0.0,  720, 360,
+                   0.0,  0.0, 1]
+    dist_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
 
 # Calibration Parameters.!
 calib:

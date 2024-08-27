@@ -2,7 +2,8 @@
 
 # Topic name in rosbag
 PointCloudTopic: "/livox/lidar"
-ImageTopic: "/camera/color/image_raw"
+# ImageTopic: "/camera/color/image_raw"
+ImageTopic: "/usb_cam/image_raw"
 
 ExtrinsicMat: !!opencv-matrix
   rows: 4
@@ -12,6 +13,14 @@ ExtrinsicMat: !!opencv-matrix
          0.0,  0.0,  -1.0,    0.0,
          1.0,   0.0,    0.0,    0.0,
          0.0,   0.0,    0.0,    1.0]
+  # date: [0.9659, 0.0,   0.2588, 0.0,
+  #        0.0,    1.0,   0.0,    0.0,
+  #        -0.2588,0.0,   0.9659, 0.0,
+  #        0.0,    0.0,   0.0,    1.0]
+#   date: [0.0552885,-0.997888,0.0341032,-0.015903
+# -0.031057,-0.0358577,-0.998874,0.00144097
+# 0.997987,0.0541671,-0.0329739,-0.470853
+# 0,0,0,1]
 # Params for Canny Edge Extraction
 
 Canny.gray_threshold: 10
