@@ -10,12 +10,12 @@ camera:
     #             0.0,     1366.46,  535.074,
     #             0.0,     0.0,      1.0     ]
     # dist_coeffs: [0.0958277, -0.198233, -0.000147133, -0.000430056, 0.000000]
-    camera_matrix: [1280, 0.0, 640,
+    camera_matrix: [720, 0.0, 640,
                    0.0,  720, 360,
                    0.0,  0.0, 1]
     dist_coeffs: [0.0, 0.0, 0.0, 0.0, 0.0]
 
 # Calibration Parameters.!
 calib:
-    calib_config_file: "/home/goslam/catkin_ws1/src/livox_camera_calib/config/config_outdoor.yaml"
+    calib_config_file: "/home/goslam/catkin_ws1/src/livox_camera_calib/config/config_indoor.yaml"
     use_rough_calib: true # set true if your initial_extrinsic is bad
